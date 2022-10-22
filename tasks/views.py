@@ -1,5 +1,3 @@
-import http
-from http.client import HTTPResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -9,8 +7,8 @@ def hello(request):
 
 
 def tasklist(request):
-   return render(request, "tasks/list.html")
-  # return HttpResponse('IOIO')
+    return render(request, "tasks/list.html")
 
-def nomeseu(request, name):
-    return render(request, 'tasks/nomeseu.html', {'name': name})
+
+def your_name(request, name):
+    return render(request, 'tasks/yourname.html', {'name': name})
