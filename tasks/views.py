@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import TaskForm
+from django.contrib import messages
 
 from .models import Task
 
@@ -47,6 +48,13 @@ def editTask(request, id):
             return render(request, 'tasks/edittask.html', {'form': form})
     else:
         return render(request, 'tasks/edittask.html', {'form': form})
+
+
+def deleteTask(request, id):
+    task = get_object_or_404(Task, pk=id)
+    task.delete()
+    messages.info(request, 'Tarefa deletada com sucesso!!')
+    return redirect('/')
 
 
 def your_name(request, name):
