@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import TaskForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from .models import Task
 
@@ -11,7 +12,10 @@ def hello(request):
 
 
 def tasklist(request):
-    tasks = Task.objects.all().order_by('-created_at')
+    tasks_list = Task.objects.all().order_by('-created_at')
+    paginator = Paginator(tasks_list, 4)
+    page = request.GET.get('page')
+    tasks = paginator.get_page(page)
     return render(request, "tasks/list.html", {'tasks': tasks})
 
 
