@@ -72,3 +72,15 @@ def deleteTask(request, id):
 @login_required
 def your_name(request, name):
     return render(request, 'tasks/yourname.html', {'name': name})
+
+@login_required
+def changestatus (request, id):
+    task = get_object_or_404(Task, pk=id)
+
+    if task.done == 'doing':
+        task.done = 'done'
+    else:
+        task.done = 'doing'
+
+    task.save()
+    return redirect('/')

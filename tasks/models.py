@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 
 STATUS = (
     ('doing', 'Doing'),
-    ('dona', 'Done')
+    ('done', 'Done')
 )
 
 
